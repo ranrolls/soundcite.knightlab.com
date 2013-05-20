@@ -9,7 +9,7 @@ SC.initialize({
 
 // Get the song
 
-$('.connector').click(function() {
+function load_sc_player() {
     var baseURL = $('#url').val();
     $.getJSON('https://soundcloud.com/oembed?callback=?', {
         format: 'js',
@@ -33,7 +33,9 @@ $('.connector').click(function() {
         $('#explainer').css('display', 'none');
         $('#creation_box').css('display', 'block');
     });
-});
+}
+$('.connector').click(load_sc_player);
+$("#url").keyup(function(event) { if(event.keyCode == 13) { load_sc_player();}});
 
 // Player functionality
 
@@ -111,3 +113,4 @@ $('#header').click(function() {
 $('#audition_area').on('click', 'textarea.code', function() {
     $(this).select();
 });
+
