@@ -72,7 +72,7 @@ $('#button_wrapper').on("click", $('.test_btn'), function() {
                     $('#audition_area').append("<div class='clip'>")
                     $('.clip:last').append(clip.el);
                     $('.clip:last').append("<input type='button' value='delete' class='btn delete'>");
-                    $('.clip:last').append('<textarea id="inline" readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
+                    $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
                     $('#audition_area').append("</div>");
 
                     $('.btn.delete').click(function() {
@@ -108,6 +108,6 @@ $('#header').click(function() {
     $('#header').select();
 });
 
-$('#inline').click(function() {
-    $('#inline').select();
+$('#audition_area').on('click', 'textarea.code', function() {
+    $(this).select();
 });
