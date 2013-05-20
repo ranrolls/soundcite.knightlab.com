@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div id="left" class="span4">
+        <nav id="nav" data-spy="affix" class="affix span4">
+        <h1>SoundCite</h1>
+        <h3>Instructions</h3>
+
+        <h5>Creation</h5>
+        <ol>
+          <li>Find a sound on SoundCloud and paste its URL into the URL box to the right.</li>
+          <li>Use the SoundCloud embed to set your start and end points for your clip.</li>
+          <li>Paste in the text associated with this clip.</li>
+          <li>Create each clip you need associated with this sound.</li>
+        </ol>
+        <h5>Embedding</h5>
+          <ol>
+            <li>When you are finished, take the following embed code and paste it at the top of your post.</li>
+            <textarea id="header" rows="4" readonly="readonly" class="code">&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;
+            </textarea>
+            <li>For each clip, paste its associated embed code where the text would normally go in the post</li>
+          </ol>
+      </nav>
+      </div>
+    <div id="right" class="span8">
+      <h5>Enter your SoundCloud URL</h5>
+      <input type="search" placeholder="https://soundcloud.com/tame-impala/elephant" id="url" class="urlBox">
+      <img src="./static/img/btn-connect-l.png" class="connector">
+      <h3>Your sound</h3>
+      <section id="creation_box">
+      <div id="player_container">
+        <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
+      </div>
+      <form id="times" class="form-inline">
+        <input type="text" class="input-small start" placeholder="time (milliseconds)" value="0">
+        <input type="button" value="Set Start" class="btn start_btn">
+        <input type="text" class="input-small end" placeholder="time (milliseconds)" value="4000">
+        <input type="button" value="Set End" class="btn end_btn">
+        <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="test">
+        <span id="button_wrapper">
+          <input type="button" value="Create Clip" class="btn test_btn">
+        </span>
+      </form>
+      <div id="audition_area">
+      </div>
+      <input type="button" class="btn btn-primary" id="embed_clips"value="Embed clips">
+    </section>
+    </div>
+  </div>
+</div>
+{% endblock %}
