@@ -1,22 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container-fluid">
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <a class="brand" href="index.html">SoundCite</a>
-      <ul class="nav">
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#embed">Embed</a></li>
-        <li><a href="#qa">Q &amp; A</a></li>
-        <li><a href="#about">About/Contact</a></li>
-      </ul>
-    </div>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+    <a class="brand" href="/">SoundCite</a>
+    <ul class="nav">
+      <li><a href="#intro">Overview</a></li>
+      <li><a href="creator.html">Embed</a></li>
+      <li><a href="#qa">Q &amp; A</a></li>
+      <li><a href="#about">About/Contact</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li class="knightlab-tab">
+        <a data-toggle="preheader" data-target="/source/preheader.html" href="#">
+          <span>Northwestern University Knight Lab</span>
+        </a>
+      </li>
+    </ul>
   </div>
-  <div id="intro" class="row-fluid">
-    <header class="row-fluid">
-      <h2 class="span12">Making Inline Audio Easy and Seamless</h2>
-    </header>
+  </div>
+</div>
+<div id="intro" class="hero-unit">
+  <div class="container-fluid">
+    <hgroup class="span12">
+      <h1 class="logo-mark xl">SoundCite<span><em>JS</em></span></h1>
+      <p class="lead">Making inline audio easy and seamless</p>
+      <p><a href="creator.html" class="btn btn-large btn-success">Make a clip now</a></p>
+    </hgroup>
+  </div>
+</div>
+<div class="container-fluid">
+  <div id="overview" class="row-fluid">
     <div class="span4">
       <p class="lead">Usually adding audio to a text story is an uncomfortable choice. Either the user reads or listens but never both. Until now.</p>
       <p>SoundCite is a simple-to-use tool that helps content creators add audio to their stories. The audio is not isolated in a player positioned off to the side, interrupting the text or housed in a garish player that distracts content consumers from reading.</p>
@@ -24,7 +39,7 @@
       <p>SoundCite audio adds emotion or context to the text. It never asks users to look away from what their reading. And, most importantly, it requires no technical skills to use.</p>
       <p>SoundCite is currently in an alpha, pre-release stage. Check out our <a href="http://github.com/NUKnightLab/soundcite">GitHub repo</a> and please feel free to contribute! We will have more news on a beta release soon.</p>
     </div>
-    <div class="span7 examples well row-fluid">
+    <div class="span8 examples well row-fluid">
       <header class="row-fluid">
         <h4 class="span12">Examples</h4>
       </header>
@@ -53,13 +68,10 @@
         </article>
       </div>
     </div>
-    <header class="row-fluid">
-      <h2 class="span12"><a href="creator.html">Create Your SoundCite Clips Here</a></h2>
-    </header>
   </div>
   <div id="qa" class="row-fluid">
     <header class="row-fluid">
-      <h2 class="span12">Frequently Asked Questions</h2>
+      <h2 class="span12">Q&A</h2>
     </header>
     <article class="sections">
       <div class="question span3">
@@ -80,42 +92,58 @@
       </div>
     </article>
   </div>
-  <div id="about" class="row-fluid">
-    <header class="row-fluid">
-      <h2 class="span12">About</h2>
-    </header>
-    <article class="span12">
-      <p>SoundCite was created by <strong><a href="http://www.tylerjfisher.com/" target="_blank">Tyler Fisher</a></strong> and <strong><a href="http://www.jeremygilbert.com/" target="_blank">Jeremy Gilbert</a></strong> at Northwestern University's Knight Lab, with support from the John S. and James L. Knight Foundation and the National Science Foundation.</p>
-    </article>
-    <div class="row-fluid">
-      <figure class="offset2 span2 text-center" style="padding-top:70px;">
-          <a href="http://knightlab.northwestern.edu/site/" target="blank">
-              <img src="../static/img/knight_lab_logo.png" alt="Knight Lab logo">
-          </a>
-      </figure>
-      <figure class="span2 text-center">
-          <a href="http://www.northwestern.edu/" target="blank">
-              <img src="../static/img/northwestern_university_logo.png" alt="Northwestern University logo">
-          </a>
-      </figure>
-      <figure class="span2 text-center" style="padding-top:80px;">
-          <a href="http://www.knightfoundation.org/" target="blank">
-              <img src="../static/img/knight_foundation_logo.png" alt="Knight Foundation logo">
-          </a>
-      </figure>
-      <figure class="span2 text-center" style="padding-top:20px;">
-          <a href="http://www.nsf.gov/" target="blank">
-              <img src="../static/img/national_science_foundation_logo.png" alt="national_science_foundation_logo">
-          </a>
-      </figure>
-    </div>
-  </div>
-  <div id="about2" class="row-fluid">
-    <div class="span12">
-      <p>&copy;2012 Copyright <strong>Knight Lab</strong> | <a href="http://knightlab.northwestern.edu/site/" target="blank">knightlab.us</a> |  <a href="http://www.twitter.com/knightlab" target="blank">@knightlab</a>  |  <a href="http://twitter.com/soundcite" target="blank">@soundcite</a></p>
-      <p>1845 Sheridan Road, Fisk 109-111, Evanston IL. 60208 | (847) 467-4971</p>
-    </div>
-  </div>
+  <footer>
+      <div class="clearfix" id="footer">
+        <div id="footer-wrapper" class="row-fluid">
+          <div class="span4">
+            <address itemtype="http://data-vocabulary.org/Organization" itemscope="">
+              <span title="Knight Lab | Advancing news media innovation through exploration and experimentation." class="address-name" itemprop="name">Knight Lab</span>
+              <span itemtype="http://data-vocabulary.org/Address" itemscope="" class="address" itemprop="address">
+                <span class="street-address" itemprop="street-address">1845 Sheridan Road<br>Fisk #109 &amp; #111</span>,
+                <div class="address-group">
+                  <span itemprop="locality">Evanston</span>,
+                  <span itemprop="region">IL</span>. <span itemprop="postal-code">60208</span><br>
+                  <a class="map" target="_blank" href="https://maps.google.com/maps?q=1845+Sheridan+Road+Evanston+IL+6020&amp;hl=en&amp;ll=42.050942,-87.673511&amp;spn=0.003059,0.004898&amp;sll=42.050647,-87.674246&amp;sspn=0.012237,0.019591&amp;gl=us&amp;hnear=1845+Sheridan+Rd,+Evanston,+Cook,+Illinois+60201&amp;t=m&amp;z=18&amp;iwloc=A"><i>+</i> <span>map</span></a>
+                  <span class="address-country" itemprop="country-name">United States</span>
+                </div>
+              </span>
+              <span itemtype="http://www.data-vocabulary.org/Geo/" itemscope="" class="geo" itemprop="geo">
+                  Latitude: <span itemprop="latitude">42.056893</span>
+                  Longitude: <span itemprop="longitude">-87.676735</span>
+              </span>
+              <span class="tel" itemprop="tel">(847) 467-4971</span>
+              <a itemprop="url" href="http://knightlab.northwestern.edu" class="url">Northwesten University Knight Lab | Advancing media innovation through exploration and experimentation.</a>
+            </address>
+            <ul class="social">
+              <li><a target="_blank" title="follow @knightlab on twitter" href="http://www.twitter.com/knightlab"><i class="icon-twitter-sign icon-large"></i></a></li>
+              <li><a target="_blank" title="Knight Lab on Facebook" href="https://www.facebook.com/knightlab"><i class="icon-facebook-sign icon-large"></i></a></li>
+              <li><a title="email Knight Lab" href="mailto:Knightlab@northwestern.edu"><i class="icon-sign-blank icon-large iconemail"></i></a></li>
+              <li><a target="_blank" title="Knight Lab on github" href="https://github.com/NUKnightLab/"><i class="icon-github-sign icon-large"></i></a></li>
+              <li><a target="_blank" title="Knight Lab on Tumblr" href="http://knightlab.tumblr.com/"><i class="icon-sign-blank icon-large icontumblr"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="span8">
+            <ul class="logos clearfix">
+              <li><a title="John S. and James L. Knight Foundation" href="http://www.knightfoundation.org/" class="knightfoundation"><span>John S. and James L. Knight Foundation</span></a></li>
+              <li><a title="National Science Foundation" href="http://www.nsf.gov/" class="nsf"><span>National Science Foundation</span></a></li>
+              <li><a title="Robert R. McCormick Foundation" href="http://www.mccormickfoundation.org/" class="mccormickfound"><span>Robert R. McCormick Foundation</span></a></li>
+              <li><a title="Northwestern University" href="http://www.northwestern.edu/" class="northwestern"><span>Northwestern University</span></a></li>
+              <li><a title="McCormick School of Engineering | Northwestern University" href="http://www.mccormick.northwestern.edu/" class="mccormick"><span>McCormick School of Engineering | Northwestern University</span></a></li>
+              <li><a title="Medill School of Journalism | Northwestern University" href="http://www.medill.northwestern.edu" class="medill"><span>Medill School of Journalism | Northwestern University</span></a></li>
+            </ul>
+            <div class="notes">
+              <p><a target="_blank" href="http://www.northwestern.edu/" title="Northwestern University">Northwestern University</a> Knight Lab is a joint initiative of the <a href="http://www.mccormick.northwestern.edu/">Robert R. McCormick School of Engineering and Applied Science</a> and the<a href="http://www.medill.northwestern.edu/"> Medill School of Journalism, Media, Integrated Marketing Communications</a>.</p>
+              <p>The Lab was launched and is sustained by a grant from the<a href="http://www.knightfoundation.org/"> John S. and James L. Knight Foundation</a>, with additional support from the<a href="http://www.mccormickfoundation.org/"> Robert R. McCormick Foundation</a> and the<a href="http://www.nsf.gov/"> National Science Foundation</a>.</p>
+            </div>
+          </div>
+          <div class="copyright">
+            © Copyright 2013 <span title="Knight Lab">Northwestern University</span>
+          </div>
+        </div><!-- end #footer-wrapper -->
+      </div><!-- end #footer -->
+      <div id="footer-outer"></div>
+    </footer>
   <!-- Google Analytics Tracking -->
   <script type="text/javascript">
 
