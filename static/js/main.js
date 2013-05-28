@@ -20,16 +20,10 @@ function load_sc_player() {
         $('#player_container').empty();
         $('#player_container').html(data.html);
         var sc_url = $('#player_container').find('iframe').attr('src')
-        if (sc_url.substring(0,5) == "http:") {
-            sc_url = "https" + sc_url.substring(4)
-            $('#player_container').find('iframe').attr('src', sc_url)
-            var new_iframe = $('#player_container').find('iframe');
-            $('#player_container').empty();
-            $('#player_container').html(new_iframe);
-        }
-        else {
-            return false;
-        }
+        $('#player_container').find('iframe').attr('src', sc_url)
+        var new_iframe = $('#player_container').find('iframe');
+        $('#player_container').empty();
+        $('#player_container').html(new_iframe);
         $('#explainer').css('display', 'none');
         $('#creation_box').css('display', 'block');
     });
