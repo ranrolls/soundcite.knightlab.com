@@ -64,7 +64,7 @@ $('#button_wrapper').on("click", $('.test_btn'), function() {
         SC.stream(clip.id, function(sound) {
             sound.load({
                 onload: function() {
-                    soundcite.bind(clip.sound_loaded, clip);
+                    console.log('hi');
                     $('#audition_area').append("<div class='clip'>")
                     $('.clip:last').append(clip.el);
                     $('.clip:last').append("<input type='button' value='delete' class='btn delete'>");
