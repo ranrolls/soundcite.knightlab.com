@@ -28,8 +28,9 @@
     </div>
     <div id="right" class="span8">
       <h5>Enter your SoundCloud URL</h5>
-      <input type="search" placeholder="https://soundcloud.com/tame-impala/elephant" id="url" class="urlBox">
+      <input type="search" id="url" class="urlBox">
       <img src="./static/img/btn-connect-l.png" class="connector">
+      <div class="example">example: <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></div>
       <h3>Your sound</h3>
       <section id="creation_box">
         <div id="player_container">
@@ -54,4 +55,12 @@
 {% endblock %}
 {% block extrascripts %}
 <script src="static/js/main.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#example").click(function() {
+      $("#url").val($(this).text());
+      load_sc_player();
+    });
+  })
+</script>
 {% endblock %}
