@@ -20,6 +20,11 @@
   <script src="{{ STATIC_URL }}/js/html5shiv.js"></script>
   <![endif]-->
 
+  <script>
+    var shiftWindow = function() { scrollBy(0, -50) };
+    window.addEventListener("hashchange", shiftWindow);
+    if (window.location.hash) shiftWindow();
+  </script>
 
   {# Google Analytics: don't mess with this stuff #}
   {# named tracker notes from https://developers.google.com/analytics/devguides/collection/gajs/ #}
@@ -43,7 +48,7 @@
   {# End Google Analytics #}
   {% block extrahead %}{% endblock %}
 </head>
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
 
   <!-- BEGIN HEADER -->
 
@@ -58,10 +63,10 @@
         <a class="brand" href="/">SoundCite</a>
         <div class="nav-collapse navbar-responsive-collapse collapse" style="height: 0px;">
           <ul class="nav">
-            <li><a href="/index.html#examples">Examples</a></li>
+            <li><a href="/index.html#examples" data-scroll="true">Examples</a></li>
+            <li><a href="/index.html#qa"  data-scroll="true">Q &amp; A</a></li>
+            <li><a href="/index.html#about" data-scroll="true">About</a></li>
             <li><a href="/creator.html">Embed</a></li>
-            <li><a href="/index.html#qa">Q &amp; A</a></li>
-            <li><a href="/index.html#about">About</a></li>
           </ul>
           <ul class="nav pull-right">
             <li class="knightlab-tab">
