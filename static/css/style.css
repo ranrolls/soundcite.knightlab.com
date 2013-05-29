@@ -1,57 +1,63 @@
-
-
+/* To center the SoundCite logo and tagline */
 #intro {
   text-align: center;
 }
 
-#overview .examples {
+/* To manually center the words SoundCite irrespective of the JS badge */
+#intro .logo-mark {
+	padding-left: 100px;
+}
+@media all and (max-width:568px) {
+	#intro .logo-mark {
+		margin-left: -5px;
+		padding: 0;
+	}
+}
+
+/* This media query re-sizes the blueline fixed type sizes. Remove if EMs are implemented */ 
+@media all and (max-width:568px) {
+	#intro .logo-mark {
+		font-size: 52px;
+	}
+	#intro .logo-mark span {
+		font-size: 18px;
+	}
+	#intro .lead {
+		font-size: 20px;
+		line-height: 24px;
+	}
+	#overview h1 {
+		font-size: 32px;
+	}
+}
+
+/* To remove the double padding from the 'well' and the 'H4' */
+#examples {
 	padding-top: 0;
 }
-
-#overview .examples h4 {
-  margin-top:0;
+#examples figure,#examples .getStarted {
+	text-align: center;
 }
-
-#overview .examples .example {
-  margin-bottom:20px;
-  overflow:auto;
-}
-
-#overview .examples .example:last-child {
-  margin-bottom:0;
-  overflow:auto;
-}
-
-#overview .examples .example figure {
-  float: left;
-  margin: 15px 0 0 0;
-}
-#overview .examples .example article {
-  float: left;
-}
-
-#overview .examples .example p {
-  display: inline-block;
-}
-
-#overview .examples .example figure img {
-  border-radius: 100px;
+#examples img {
+  border-radius: 100%;
   width: 100%;
   height: auto;
+	max-width: 200px;
 }
 
-.example {
-  clear: both;
-}
-
-#make {
-  margin-top: 23px;
-}
-
-
-}
 /*  AUTHOR TOOLS  */
+#right,#left {
+	min-height: 800px;
+	overflow: auto;
+}
 
+@media all and (max-width:568px) {
+	#left,#right,#nav {
+		position: relative;
+		float: none;
+		min-height: auto;
+	}
+}
 .connector {
   position: relative;
   top: -5px;
