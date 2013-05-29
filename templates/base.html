@@ -20,12 +20,6 @@
   <script src="{{ STATIC_URL }}/js/html5shiv.js"></script>
   <![endif]-->
 
-  <script>
-    var shiftWindow = function() { scrollBy(0, -50) };
-    window.addEventListener("hashchange", shiftWindow);
-    if (window.location.hash) shiftWindow();
-  </script>
-
   {# Google Analytics: don't mess with this stuff #}
   {# named tracker notes from https://developers.google.com/analytics/devguides/collection/gajs/ #}
   {# multi-domain tracking notes from https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingSite #}
@@ -144,6 +138,13 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="//cdn.knightlab.com/libs/blueline/latest/js/blueline.min.js"></script>
+  <script>
+  var shiftWindow = function() { scrollBy(0, -50) };
+  window.addEventListener("hashchange", shiftWindow);
+  $(document).ready(function (){if (window.location.hash) {
+    shiftWindow();
+  }});
+  </script>
   {% block extrascripts %}{% endblock %}
 </body>
 </html>
