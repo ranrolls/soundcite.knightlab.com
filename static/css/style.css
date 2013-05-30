@@ -14,7 +14,7 @@
 	}
 }
 
-/* This media query re-sizes the blueline fixed type sizes. Remove if EMs are implemented */ 
+/* This media query re-sizes the blueline fixed type sizes. Remove if EMs are implemented */
 @media all and (max-width:568px) {
 	#intro .logo-mark {
 		font-size: 52px;
@@ -82,7 +82,7 @@ pre {
 }
 
 textarea {
-  width: 100% !important;
+  width: 95% !important;
   height: auto !important;
   font-family: Menlo, Monaco, "Courier New", Courier, monospace !important;
   background-color: white !important;
