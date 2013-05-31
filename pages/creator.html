@@ -30,20 +30,20 @@
       <h5>Enter your SoundCloud URL</h5>
       <input type="search" id="url" class="urlBox">
       <img src="./static/img/btn-connect-l.png" class="connector">
-      <div class="example">example: <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></div>
+      <div class="example">ex. <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></div>
       <h3>Your sound</h3>
       <section id="creation_box">
         <div id="player_container">
           <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
         </div>
         <form id="times" class="form-inline">
-          <input type="text" class="input-small start" placeholder="time (milliseconds)" value="0">
-          <input type="button" value="Set Start" class="btn start_btn">
-          <input type="text" class="input-small end" placeholder="time (milliseconds)" value="4000">
-          <input type="button" value="Set End" class="btn end_btn">
-          <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="test">
+          <input type="text" id="start_field" class="input-small start" placeholder="time (milliseconds)" value="0">
+          <input type="button" id="start_btn" value="Set Start" class="btn">
+          <input type="text" id="end_field" class="input-small end" placeholder="time (milliseconds)" value="4000">
+          <input type="button" id="end_btn" value="Set End" class="btn">
+          <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
           <span id="button_wrapper">
-            <input type="button" value="Create Clip" class="btn test_btn">
+            <input type="button" id="create_clip" value="Create Clip" class="btn btn-primary">
           </span>
         </form>
         <div id="audition_area">
@@ -56,12 +56,4 @@
 {% block extrascripts %}
 <script src="//w.soundcloud.com/player/api.js"></script>
 <script src="static/js/main.js"></script>
-<script>
-  $(document).ready(function() {
-    $("#example").click(function() {
-      $("#url").val($(this).text());
-      load_sc_player();
-    });
-  })
-</script>
 {% endblock %}
