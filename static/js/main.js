@@ -70,10 +70,11 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
                         $('#audition_area').append("<div class='clip'>")
                         $('.clip:last').append(clip.el);
                         $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger'>");
+                        $('.clip:last').append("<h6>Embed Code</h6>");
                         $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
                         $('#audition_area').append("</div>");
 
-                        $('.btn.delete').click(function() {
+                        $('.btn.btn-danger').click(function() {
                             var the_sound = $(this).prev('.soundcite');
                             for (i=0; i<clips.length; i++) {
                                 if(the_sound[0] === clips[i].el) {
