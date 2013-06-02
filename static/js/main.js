@@ -129,20 +129,21 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
                 end: getTimeAsMillis('#end_field'),
                 text: $('#linktext').val()
             });
-            var clip = new soundcite.Clip($(clip_html)[0]);
-            clips.push(clip)
-            // $('#audition_area').append(clip_preview_template({clip_html: clip_html}))
-            SC.stream(clip.id, function(sound) {
-                sound.load({
-                    onload: function() {
-                        $('#audition_area').append("<div class='clip'>")
-                        $('.clip:last').append(clip.el);
-                        $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger delete-clip'>");
-                        $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
-                        $('#audition_area').append("</div>");
-                    }
-                });
+            $('#audition_area').append(clip_preview_template({clip_html: clip_html}))
+            $('#audition_area .clip:last').find('.soundcite').each(function() {
+                clips.push(new soundcite.Clip(this));
             });
+            // SC.stream(clip.id, function(sound) {
+            //     sound.load({
+            //         onload: function() {
+            //             $('#audition_area').append("<div class='clip'>")
+            //             $('.clip:last').append(clip.el);
+            //             $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger delete-clip'>");
+            //             $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
+            //             $('#audition_area').append("</div>");
+            //         }
+            //     });
+            // });
         });
     }
 })
