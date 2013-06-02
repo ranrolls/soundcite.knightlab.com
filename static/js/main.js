@@ -14,7 +14,7 @@ function millisToTime(s) {
 
   var parts = [], hms = 0;
   if (secs) { parts.push(secs) } else { parts.push(0) };
-  if (mins) { parts.push(secs) } else { parts.push(0) };
+  if (mins) { parts.push(mins) } else { parts.push(0) };
   if (hrs) parts.push(hrs);
   hms = _(parts).map(addZ).reverse().join(':');
   if (ms) return hms + '.' + ms;
@@ -56,14 +56,17 @@ function load_sc_player() {
     },
     function(data) {
         $('#player_container').empty();
+        $("#times")[0].reset();
         $('#player_container').html(data.html);
-        var sc_url = $('#player_container').find('iframe').attr('src')
-        $('#player_container').find('iframe').attr('src', sc_url)
-        var new_iframe = $('#player_container').find('iframe');
-        $('#player_container').empty();
-        $('#player_container').html(new_iframe);
         $('#explainer').css('display', 'none');
         $('#creation_box').css('display', 'block');
+        setTime("#start_field",millisToTime(0));
+        var new_iframe = $('#player_container iframe')[0];
+        $(new_iframe).attr('id','player_iframe');
+        $("#player_iframe").ready(function() {
+            var widget = SC.Widget("player_iframe");
+            widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration))})
+        })
     });
 }
 $('.connector').click(load_sc_player);
