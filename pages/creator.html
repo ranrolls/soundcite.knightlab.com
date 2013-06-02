@@ -52,6 +52,16 @@
     </div>
   </div>
 </div>
+<script id="clip-base" type="text/template">
+<span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span> <input type='button' value='delete' class='btn btn-danger'>
+</script>
+<script id="clip-preview" type="text/template">
+<div class="clip">
+<%= clip_html %>
+<textarea readonly="readonly" class="code"><%= clip_html %></textarea>
+</div>
+</script>
+
 {% endblock %}
 {% block extrascripts %}
 <script src="//w.soundcloud.com/player/api.js"></script>

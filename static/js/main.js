@@ -105,35 +105,42 @@ $("#end_btn").click(function() {
     });
 });
 
+var clip_base_template = _.template($("#clip-base").html().trim());
+var clip_preview_template = _.template($("#clip-preview").html().trim());
+
+$('#audition_area').on("click",".delete-clip", function() {
+    var the_sound = $(this).prev('.soundcite');
+    for (i=0; i<clips.length; i++) {
+        if(the_sound[0] === clips[i].el) {
+            clips.splice(i, 1);
+        }
+    }
+    $(this).parents(".clip").remove();
+});
+
 $('#button_wrapper').on("click", $('#create_clip'), function() {
     if (validate()) {
         var widget_iframe = $('#player_container').find('iframe');
         var widget = SC.Widget(widget_iframe[0]);
-        start_time = getTimeAsMillis('#start_field');
-        end_time = getTimeAsMillis('#end_field');
-        var text = $('#linktext').val();
         widget.getCurrentSound(function(sound_metadata) {
-            var elem = $('<span>').attr('data-id', sound_metadata.id).attr('data-start', start_time).attr('data-end', end_time).attr('class', 'soundcite').text(text);
-            var clip = new soundcite.Clip(elem[0]);
+            var clip_html = clip_base_template({
+                id: sound_metadata.id,
+                start: getTimeAsMillis('#start_field'),
+                end: getTimeAsMillis('#end_field'),
+                text: $('#linktext').val()
+            });
+            var clip = new soundcite.Clip($(clip_html)[0]);
             clips.push(clip)
+            // $('#audition_area').append(clip_preview_template({clip_html: clip_html}))
             SC.stream(clip.id, function(sound) {
                 sound.load({
                     onload: function() {
                         $('#audition_area').append("<div class='clip'>")
+                        console.log(clip.el);
                         $('.clip:last').append(clip.el);
-                        $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger'>");
+                        $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger delete-clip'>");
                         $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
                         $('#audition_area').append("</div>");
-
-                        $('.btn.btn-danger').click(function() {
-                            var the_sound = $(this).prev('.soundcite');
-                            for (i=0; i<clips.length; i++) {
-                                if(the_sound[0] === clips[i].el) {
-                                    clips.splice(i, 1);
-                                }
-                            }
-                            $(this).parents(".clip").remove();
-                        });
                     }
                 });
             });
