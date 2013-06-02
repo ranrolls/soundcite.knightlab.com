@@ -92,7 +92,7 @@ $("#start_btn").click(function() {
     var widget_iframe = $('#player_container').find('iframe');
     var widget = SC.Widget(widget_iframe[0]);
     widget.getPosition(function(position) {
-        setTime("#start_field", position)
+        setTime("#start_field", millisToTime(position))
     });
 });
 
@@ -101,7 +101,7 @@ $("#end_btn").click(function() {
     var widget = SC.Widget(widget_iframe[0]);
     var clicked = $(this);
     widget.getPosition(function(position) {
-        setTime("#end_field", position)
+        setTime("#end_field", millisToTime(position))
     });
 });
 
