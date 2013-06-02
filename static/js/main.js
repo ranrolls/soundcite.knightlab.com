@@ -92,16 +92,14 @@ function getTimeAsMillis(field_id) {
 }
 
 $("#start_btn").click(function() {
-    var widget_iframe = $('#player_container').find('iframe');
-    var widget = SC.Widget(widget_iframe[0]);
+    var widget = SC.Widget("player_iframe");
     widget.getPosition(function(position) {
         setTime("#start_field", millisToTime(position))
     });
 });
 
 $("#end_btn").click(function() {
-    var widget_iframe = $('#player_container').find('iframe');
-    var widget = SC.Widget(widget_iframe[0]);
+    var widget = SC.Widget("player_iframe");
     var clicked = $(this);
     widget.getPosition(function(position) {
         setTime("#end_field", millisToTime(position))
@@ -123,8 +121,7 @@ $('#audition_area').on("click",".delete-clip", function() {
 
 $('#button_wrapper').on("click", $('#create_clip'), function() {
     if (validate()) {
-        var widget_iframe = $('#player_container').find('iframe');
-        var widget = SC.Widget(widget_iframe[0]);
+        var widget = SC.Widget("player_iframe");
         widget.getCurrentSound(function(sound_metadata) {
             var clip_html = clip_base_template({
                 id: sound_metadata.id,
