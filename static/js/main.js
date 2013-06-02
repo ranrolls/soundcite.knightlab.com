@@ -2,6 +2,43 @@ var clips = [];
 
 // Invoke SoundCloud player methods
 
+function millisToTime(s) { 
+// http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
+  function addZ(n) {
+    return (n<10? '0':'') + n;
+  }
+
+  var ms = s % 1000;
+  s = (s - ms) / 1000;
+  var secs = s % 60;
+  s = (s - secs) / 60;
+  var mins = s % 60;
+  var hrs = (s - mins) / 60;
+
+  return addZ(hrs) + ':' + addZ(mins) + ':' + addZ(secs) + '.' + ms;
+}
+
+function timeToMillis(s) {
+    var fraction = 0, hrs = 0, mins = 0, secs = 0;
+    if (s.indexOf('.') > -1) {
+        var parts = s.split('.');
+        s = parts[0];
+        fraction = parseInt(parts[1]);
+    }
+    parts = s.split(':');
+    parts.reverse();
+    var secs = parseInt(parts[0]);
+    if (parts.length > 1) {
+        mins = parseInt(parts[1]);
+        if (parts.length > 2) {
+            hrs = parts[2];
+        }
+    }
+    
+    return (fraction * 100) + (secs * 1000) + (mins * 60 * 1000) + (hrs * 60 * 60 * 1000);
+}
+
+
 SC.initialize({
     client_id: "5ba7fd66044a60db41a97cb9d924996a",
     redirect_uri: "http://www.soundcite.com"
@@ -60,8 +97,8 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
         start_time = $('#start_field').val();
         end_time = $('#end_field').val();
         var text = $('#linktext').val();
-        widget.getCurrentSound(function(currentSound) {
-            var elem = $('<span>').attr('data-id', currentSound.id).attr('data-start', start_time).attr('data-end', end_time).attr('class', 'soundcite').text(text);
+        widget.getCurrentSound(function(sound_metadata) {
+            var elem = $('<span>').attr('data-id', sound_metadata.id).attr('data-start', start_time).attr('data-end', end_time).attr('class', 'soundcite').text(text);
             var clip = new soundcite.Clip(elem[0]);
             clips.push(clip)
             SC.stream(clip.id, function(sound) {
