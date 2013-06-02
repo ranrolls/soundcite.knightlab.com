@@ -1,13 +1,10 @@
 var clips = [];
 
-// Invoke SoundCloud player methods
-
 function millisToTime(s) { 
 // http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
   function addZ(n) {
     return (n<10? '0':'') + n;
   }
-
   var ms = s % 1000;
   s = (s - ms) / 1000;
   var secs = s % 60;
@@ -15,19 +12,20 @@ function millisToTime(s) {
   var mins = s % 60;
   var hrs = (s - mins) / 60;
 
-  return addZ(hrs) + ':' + addZ(mins) + ':' + addZ(secs) + '.' + ms;
+  var parts = [], hms = 0;
+  if (secs) { parts.push(secs) } else { parts.push(0) };
+  if (mins) { parts.push(secs) } else { parts.push(0) };
+  if (hrs) parts.push(hrs);
+  hms = _(parts).map(addZ).reverse().join(':');
+  if (ms) return hms + '.' + ms;
+  return hms; // no decimal for zero
 }
 
 function timeToMillis(s) {
-    var fraction = 0, hrs = 0, mins = 0, secs = 0;
-    if (s.indexOf('.') > -1) {
-        var parts = s.split('.');
-        s = parts[0];
-        fraction = parseInt(parts[1]);
-    }
+    var hrs = 0, mins = 0, secs = 0;
     parts = s.split(':');
     parts.reverse();
-    var secs = parseInt(parts[0]);
+    secs = parseFloat(parts[0]);
     if (parts.length > 1) {
         mins = parseInt(parts[1]);
         if (parts.length > 2) {
@@ -35,7 +33,7 @@ function timeToMillis(s) {
         }
     }
     
-    return (fraction * 100) + (secs * 1000) + (mins * 60 * 1000) + (hrs * 60 * 60 * 1000);
+    return (secs * 1000) + (mins * 60 * 1000) + (hrs * 60 * 60 * 1000);
 }
 
 
@@ -73,11 +71,28 @@ $("#url").keyup(function(event) { if(event.keyCode == 13) { load_sc_player();}})
 
 // Player functionality
 
+function setTime(field_id, position) { 
+    position = String(position);
+    
+    if (position.match(/^\d+$/)) { // all digits is good
+        $(field_id).val(millisToTime(position));
+    } else { // for now, trust everything
+        $(field_id).val(position);
+    }
+}
+
+function getTimeAsMillis(field_id) {
+    // get the time from the given field, converting from h:m:s.s to millis if need be
+    var value = $(field_id).val();
+    if (value.indexOf('.') == -1 && value.indexOf(':') == -1) return value;
+    return timeToMillis(value);
+}
+
 $("#start_btn").click(function() {
     var widget_iframe = $('#player_container').find('iframe');
     var widget = SC.Widget(widget_iframe[0]);
     widget.getPosition(function(position) {
-        $("#start_field").attr('value', Math.round(position));
+        setTime("#start_field", position)
     });
 });
 
@@ -86,7 +101,7 @@ $("#end_btn").click(function() {
     var widget = SC.Widget(widget_iframe[0]);
     var clicked = $(this);
     widget.getPosition(function(position) {
-        $("#end_field").attr('value', Math.round(position));
+        setTime("#end_field", position)
     });
 });
 
@@ -94,8 +109,8 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
     if (validate()) {
         var widget_iframe = $('#player_container').find('iframe');
         var widget = SC.Widget(widget_iframe[0]);
-        start_time = $('#start_field').val();
-        end_time = $('#end_field').val();
+        start_time = getTimeAsMillis('#start_field');
+        end_time = getTimeAsMillis('#end_field');
         var text = $('#linktext').val();
         widget.getCurrentSound(function(sound_metadata) {
             var elem = $('<span>').attr('data-id', sound_metadata.id).attr('data-start', start_time).attr('data-end', end_time).attr('class', 'soundcite').text(text);
