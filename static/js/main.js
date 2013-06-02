@@ -136,7 +136,6 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
                 sound.load({
                     onload: function() {
                         $('#audition_area').append("<div class='clip'>")
-                        console.log(clip.el);
                         $('.clip:last').append(clip.el);
                         $('.clip:last').append("<input type='button' value='delete' class='btn btn-danger delete-clip'>");
                         $('.clip:last').append('<textarea readonly="readonly" class="code">&lt;span class="soundcite" data-id="' + clip.id + '" data-start="' + clip.start + '" data-end="' + clip.end + '"&gt;' + $(clip.el).text() + '&lt;/span&gt;</textarea>');
