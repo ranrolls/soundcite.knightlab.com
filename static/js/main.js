@@ -126,17 +126,6 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
     }
 })
 
-$('#embed_clips').click(function() {
-    $('#header').html(
-        "&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;\n"
-        + "&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;\n"
-        + "&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;"
-    );
-    for (i=0; i<clips.length; i++) {
-    }
-    $('#code').css('display', 'block');
-});
-
 $("#example").click(function() {
   $("#url").val($(this).text());
   load_sc_player();
