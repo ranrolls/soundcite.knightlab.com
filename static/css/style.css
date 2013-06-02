@@ -45,6 +45,26 @@
 	max-width: 200px;
 }
 
+/*steps from timeline.knightlab.com*/
+
+.step {
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+    border-bottom: 4px double #eee;
+}
+.step.last { border: none; }
+
+.step h2 {
+margin-top: 0;
+margin-bottom: 0;
+color: #ccc;
+font-size: 100px;
+line-height: 1em;
+}
+
+.step h3 { margin-top: 0; }
+
 /*  AUTHOR TOOLS  */
 #right,#left {
 	min-height: 800px;
@@ -121,3 +141,9 @@ input:-ms-input-placeholder {
   width: 80%;
   font-size: 14px;
 }
+
+#audition_area .soundcite {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
