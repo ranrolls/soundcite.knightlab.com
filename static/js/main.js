@@ -46,8 +46,8 @@ function validate() {
     return true;
 }
 
-function sc_resolve(url) {
-    SC.get('http://api.soundcloud.com/resolve.json', {url: url}, function(data) { window.data = data; })
+function sc_resolve(url,callback) {
+    SC.get('http://api.soundcloud.com/resolve.json', {url: url}, callback);
 }
 
 // Get the song
