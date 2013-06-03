@@ -151,3 +151,4 @@ $('#audition_area').on('click', 'textarea.code', function() {
     $(this).select();
 });
 
+$("#url").focus();
