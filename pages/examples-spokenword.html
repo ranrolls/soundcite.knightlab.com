@@ -3,18 +3,7 @@
 
 {% block content %}
 
-<div class="container-fluid">
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <a class="brand" href="index.html">SoundCite</a>
-      <ul class="nav">
-        <li><a href="#intro">Intro</a></li>
-        <li><a href="#embed">Embed</a></li>
-        <li><a href="#qa">Q &amp; A</a></li>
-        <li><a href="#about">About/Contact</a></li>
-      </ul>
-    </div>
-  </div>
+
   {% with active="speech" %}
   {% include "_examples_nav.html" %}
   {% endwith %}
@@ -45,6 +34,5 @@
       <p>...</p>
         </div>
   </div>
-</div>
 
 {% endblock %}
