@@ -131,6 +131,7 @@ $('#audition_area').on("click",".delete-clip", function() {
 $('#button_wrapper').on("click", $('#create_clip'), function() {
     if (validate()) {
         var widget = SC.Widget("player_iframe");
+        widget.pause();
         widget.getCurrentSound(function(sound_metadata) {
             var clip_html = clip_base_template({
                 id: sound_metadata.id,
