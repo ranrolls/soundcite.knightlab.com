@@ -53,11 +53,11 @@
   </div>
 </div>
 <script id="clip-base" type="text/template">
-<span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span> <input type='button' value='delete' class='btn btn-danger delete-clip'>
+<span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span>
 </script>
 <script id="clip-preview" type="text/template">
 <div class="clip">
-<%= clip_html %>
+<%= clip_html %> <input type='button' value='delete' class='btn btn-danger delete-clip'>
 <textarea readonly="readonly" class="code"><%= clip_html %></textarea>
 </div>
 </script>
