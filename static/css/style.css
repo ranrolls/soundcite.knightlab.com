@@ -125,6 +125,10 @@ input:-ms-input-placeholder {
   font-size: 14px;
 }
 
+input.error {
+  background-color: "#F5B3C9"
+}
+
 #player {
   display: none;
 }

@@ -46,31 +46,40 @@ function validate() {
     return true;
 }
 
+function sc_resolve(url) {
+    SC.get('http://api.soundcloud.com/resolve.json', {url: url}, function(data) { window.data = data; })
+}
+
 // Get the song
 function load_sc_player() {
+    $("#url").removeClass("error");
     var baseURL = $('#url').val();
-    $.getJSON('https://soundcloud.com/oembed?callback=?', {
-        format: 'js',
-        url: baseURL,
-        show_comments: 'false'
-    },
+    SC.oEmbed(baseURL,
     function(data) {
-        $('#player_container').empty();
-        $("#times")[0].reset();
-        $('#player_container').html(data.html);
-        $('#explainer').css('display', 'none');
-        $('#creation_box').css('display', 'block');
-        setTime("#start_field",millisToTime(0));
-        var new_iframe = $('#player_container iframe')[0];
-        $(new_iframe).attr('id','player_iframe');
-        $("#player_iframe").ready(function() {
-            var widget = SC.Widget("player_iframe");
-            widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration))})
-        })
+        if (data) {
+            window.data = data;
+            $('#player_container').empty();
+            $("#times")[0].reset();
+            $('#player_container').html(data.html);
+            $('#explainer').css('display', 'none');
+            $('#creation_box').css('display', 'block');
+            setTime("#start_field",millisToTime(0));
+            var new_iframe = $('#player_container iframe')[0];
+            $(new_iframe).attr('id','player_iframe');
+            $("#player_iframe").ready(function() {
+                var widget = SC.Widget("player_iframe");
+                widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration))})
+            })
+        } else {
+            $("#url").addClass('error');
+        }
     });
 }
 $('.connector').click(load_sc_player);
-$("#url").keyup(function(event) { if(event.keyCode == 13) { load_sc_player();}});
+$("#url").keyup(function(event) { 
+    $("#url").removeClass("error");
+    if(event.keyCode == 13) { load_sc_player();}
+});
 
 // Player functionality
 
