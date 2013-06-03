@@ -38,12 +38,12 @@
         </div>
         <form id="times" class="form-inline">
           <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="">
-          <input type="button" id="start_btn" value="Set Start" class="btn">
+          <input type="button" id="start_btn" value="Set start" class="btn">
           <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="">
-          <input type="button" id="end_btn" value="Set End" class="btn">
+          <input type="button" id="end_btn" value="Set end" class="btn">
           <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
           <span id="button_wrapper">
-            <input type="button" id="create_clip" value="Create Clip" class="btn btn-primary">
+            <input type="button" id="create_clip" value="Create clip" class="btn btn-primary">
           </span>
         </form>
         <div id="audition_area">
@@ -58,6 +58,7 @@
 <script id="clip-preview" type="text/template">
 <div class="clip">
 <%= clip_html %> <input type='button' value='delete' class='btn btn-danger delete-clip'>
+<h6>Embed code</h6>
 <textarea readonly="readonly" class="code"><%= clip_html %></textarea>
 </div>
 </script>
