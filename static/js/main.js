@@ -23,6 +23,7 @@ function millisToTime(s) {
 
 function timeToMillis(s) {
     var hrs = 0, mins = 0, secs = 0;
+    if (s.indexOf(':') == 0) s = "0" + s;
     parts = s.split(':');
     parts.reverse();
     secs = parseFloat(parts[0]);
@@ -41,10 +42,6 @@ SC.initialize({
     client_id: "5ba7fd66044a60db41a97cb9d924996a",
     redirect_uri: "http://www.soundcite.com"
 });
-
-function validate() {
-    return true;
-}
 
 function sc_resolve(url,callback) {
     SC.get('http://api.soundcloud.com/resolve.json', {url: url}, callback);
@@ -66,10 +63,8 @@ function load_sc_player() {
             setTime("#start_field",millisToTime(0));
             var new_iframe = $('#player_container iframe')[0];
             $(new_iframe).attr('id','player_iframe');
-            $("#player_iframe").ready(function() {
-                var widget = SC.Widget("player_iframe");
-                widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration))})
-            })
+            var widget = SC.Widget('player_iframe');
+            widget.bind(SC.Widget.Events.READY,set_end_from_widget);
         } else {
             $("#url").addClass('error');
         }
@@ -91,6 +86,7 @@ function setTime(field_id, position) {
     } else { // for now, trust everything
         $(field_id).val(position);
     }
+    validate_form();
 }
 
 function getTimeAsMillis(field_id) {
@@ -129,7 +125,7 @@ $('#audition_area').on("click",".delete-clip", function() {
 });
 
 $('#button_wrapper').on("click", $('#create_clip'), function() {
-    if (validate()) {
+    if (validate_form()) {
         var widget = SC.Widget("player_iframe");
         widget.pause();
         widget.getCurrentSound(function(sound_metadata) {
@@ -152,6 +148,46 @@ $("#example").click(function() {
   load_sc_player();
 });
 
+function validate_form() {
+    $("#create_clip").removeAttr("disabled");
+    var valid = true;
+    valid = validate_time_field($("#start_field")) && valid;
+    valid = validate_time_field($("#end_field")) && valid;
+    valid = validate_required($("#linktext")) && valid;
+    if (!valid) $("#create_clip").attr("disabled","disabled");
+    return valid;
+}
+function validate_time_field($el) {
+    $el.removeClass("error");
+    var value = $el.val();
+    if (value && value.match(/^\d+$/)) {
+        $el.val(millisToTime(value));
+    } else if (isNaN(timeToMillis(value))) {
+        $el.addClass("error");
+        return false;
+    }
+    return true;
+}
+function validate_required($el) {
+    $el.removeClass("error");
+    
+    if ($el.val().match(/.+/)) {
+        return true;
+    }
+    $el.addClass("error");
+    return false
+}
+
+function set_end_from_widget() {
+    console.log('set_end_from_widget');
+    var widget = SC.Widget("player_iframe");
+    widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration)); validate_time_field($("#end_field")); })
+}
+$("#start_field,#end_field,#linktext").blur(validate_form);
+
+$("#linktext").keyup(function() {
+    validate_form();
+});
 
 $('#header').click(function() {
     $('#header').select();
