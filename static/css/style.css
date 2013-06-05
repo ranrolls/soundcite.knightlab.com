@@ -1,3 +1,13 @@
+section {
+    padding: 20px 0;
+}
+footer {
+    margin-top: 30px;
+}
+.navbar {
+    font-size: 14px;
+}
+
 /* To center the SoundCite logo and tagline */
 #intro {
   text-align: center;
