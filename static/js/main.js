@@ -136,8 +136,9 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
                 text: $('#linktext').val()
             });
             $('#audition_area').css('display', 'block');
-            $('#audition_area').append(clip_preview_template({clip_html: clip_html}))
-            $('#audition_area .clip:last').find('.soundcite').each(function() {
+            $('#audition_area_status').css('display', 'none');
+            $('#audition_area').prepend(clip_preview_template({clip_html: clip_html}))
+            $('#audition_area .clip:first').find('.soundcite').each(function() {
                 clips.push(new soundcite.Clip(this));
             });
         });

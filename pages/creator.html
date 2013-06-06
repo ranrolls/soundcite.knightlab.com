@@ -41,8 +41,9 @@
             <button type="button" id="create_clip" class="btn btn-primary">Create</button>
           </span>
         </form>
+        <h3>Created clips</h3>
+        <em id="audition_area_status">None</em>
         <div id="audition_area">
-          <h3>Created clips</h3>
         </div>
       </section>
     </div>
@@ -65,7 +66,7 @@
 </script>
 <script id="clip-preview" type="text/template">
 <div class="clip">
-  <button type='button' class='btn btn-text pull-right icon-trash'></button>
+  <button type='button' class='btn btn-text pull-right icon-trash delete-clip'></button>
   <p>This is your clip <%= clip_html %> shown inline with text.</p> 
   <h6>Embed code</h6>
   <textarea readonly="readonly" class="code"><%= clip_html %></textarea>
