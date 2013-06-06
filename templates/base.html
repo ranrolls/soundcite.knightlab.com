@@ -46,7 +46,7 @@
 
   <!-- BEGIN HEADER -->
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
       <div class="container-fluid">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -57,10 +57,10 @@
         <a class="brand" href="/">SoundCite</a>
         <div class="nav-collapse navbar-responsive-collapse collapse" style="height: 0px;">
           <ul class="nav">
-            <li><a href="/index.html#examples" data-scroll="true">Examples</a></li>
-            <li><a href="/index.html#qa"  data-scroll="true">Q &amp; A</a></li>
-            <li><a href="/index.html#about" data-scroll="true">About</a></li>
-            <li><a href="/creator.html">Embed</a></li>
+            <li><a href="#examples" data-scroll="true">Examples</a></li>
+            <li><a href="#help"  data-scroll="true">Help</a></li>
+            <li><a href="#about" data-scroll="true">About</a></li>
+            <li><a href="https://github.com/NUKnightLab/soundcite" data-scroll="true">GitHub</a></li>
           </ul>
           <ul class="nav pull-right">
             <li class="knightlab-tab">
@@ -75,8 +75,6 @@
   </div>
   <!-- END HEADER -->
 
-  <!-- BEGIN CONTENT -->
-  <div id="content" class="container">
   {% block content %}
   {% endblock %}
   </div>
