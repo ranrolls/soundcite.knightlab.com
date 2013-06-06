@@ -163,6 +163,9 @@ input.error {
 
 #creation_box h3 {
 }
+#examples figure {
+  margin: 0px 0px 35px;
+}
 
 .urlBox {
   width: 80%;

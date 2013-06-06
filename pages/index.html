@@ -4,113 +4,58 @@
 <header id="intro" class="hero-unit">
   <h1 class="logo-mark xl">SoundCite<span><em>JS</em></span></h1>
   <h2 class="intro">Making inline audio easy and seamless</h2>
-  <p><a href="creator.html" class="btn btn-large btn-success">Make a clip now</a></p>
+  <p><a href="#create-new" class="btn btn-large btn-success">Make a clip now</a></p>
 </header>
 <!-- BEGIN CONTENT -->
-<div id="content" class="container">
+<section id="content" class="container">
   <h2>How it Works</h2>
-  <div class="row">
-    <div id="overview" class="span3">
-      <p>Audio clips force uncomfortable choices: either reads or listen but not both. Until now.</p>
-      <p>Audio is powerful device that can add emotion or context to a story. SoundCite is simple-to-use tool that lets you add audio to your story. The audio is not isolated, it plays right under the text <span class="soundcite" data-id="55521179" data-start="5992" data-end="6651">you choose</span>.</p>
-      <p>SoundCite is currently in an <a href="http://github.com/NUKnightLab/soundcite">alpha, pre-release stage</a>.</p>
-    </div>
-    <div class="offset1 span8">
-      <div id="examples" class="well">
-        <h4>Examples</h4>
-        <div class="example row-fluid">
-          <!-- NOTE: These columns do not add up to 12 because the Bootstrap 'well's' padding isn't taking into account by the responsive grid. -->
-          <article>
-             <h5>Music</h5>
-             <p>Tame Impala have never shied away from the sounds of classic rock radio, but "Elephant" is the first time they've gone deep into its mythology and symbolism. <!-- The first official single from their sophomore LP, <em>Lonerism</em>, --> ... [It] initially sounds like a pure top-down songwriting exercise- as in, "let's try to sound like the song's badass title." So, <span class="soundcite" data-id="55728529" data-start="1" data-end="4820">thick, one-note guitar riffs</span> shuffle and stomp ... <!-- with a heavy beat.--></p>
-          </article>
-        </div>
-        <div class="example row-fluid">
-          <article>
-            <h5>Spoken Word</h5>
-            <p>Stephanie Hooks pleaded for help after collapsing on the floor of her South Los Angeles home: <span class="soundcite" data-id="61188346" data-start="175796" data-end="177000">"I can't breathe... .</span> Help me breathe!" the 53-year-old grandmother wailed as frantic family members took turns on the phone with a Los Angeles Fire Department dispatcher...</p>
-          </article>
-        </div>
-        <div class="example row-fluid">
-          <article>
-            <h5>Natural Sound</h5>
-            <p>Tens of thousands of Egyptians packed into Tahrir Square in central Cairo on Friday ... <span class="soundcite" data-id="34598716" data-start="72436" data-end="81701">The crowd was as large</span> as any that has gathered in the square since the protests that forced out President Hosni Mubarak in February 2011. <!-- Even more unusual in the increasingly polarized political climate, Islamists, liberals and leftists all found common ground on at least one front: the demand that the generals, who took power with Mr. Mubarak's ouster, finally give it up. --></p>
-          </article>
-        </div>
-      </div>
-    </div>
+  <p>Audio is powerful device that can add emotion or context to a story. Unfortunately audio clips force uncomfortable choices: either read or listen, but not both. Until now. SoundCite is simple-to-use tool that lets you add inline audio to your story. The audio is not isolated, it plays right under the text <span class="soundcite" data-id="55521179" data-start="5992" data-end="6651">you choose</span>.</p>
+  <p>SoundCite is currently in an <a href="http://github.com/NUKnightLab/soundcite">alpha, pre-release stage</a>.</p>
+</section>
+<section id="examples" class="container">
+  <h2>Examples</h2>
+  <p>SoudCite clips can be used in a variety of situations. For more in-depth examples, <a href="/examples-music.html">click here</a>.</p>
+  <div class="example row-fluid">
+    <figure class="span2">
+      <a href="examples-music.html"><img alt="Tame Impala" src="./static/img/sc-music-tameimpala.jpg"></a>
+    </figure>
+    <!-- NOTE: These columns do not add up to 12 because the Bootstrap 'well's' padding isn't taking into account by the responsive grid. -->
+    <article class="span9">
+       <h5>Music</h5>
+       <p>Tame Impala have never shied away from the sounds of classic rock radio, but "Elephant" is the first time they've gone deep into its mythology and symbolism. <!-- The first official single from their sophomore LP, <em>Lonerism</em>, --> ... [It] initially sounds like a pure top-down songwriting exercise- as in, "let's try to sound like the song's badass title." So, <span data-end="4820" data-start="1" data-id="55728529" class="soundcite soundcite-loaded soundcite-play">thick, one-note guitar riffs</span> shuffle and stomp ... <!-- with a heavy beat.--></p>
+    </article>
   </div>
-<div id="walkthrough">
-  <h2>Add Your Audio</h2>
-  <div class="step row">
-    <h2 class="span1">1</h2>
-    <div class="span11">
-      <h4>Find your SoundCloud sound</h4>
-      <input type="search" id="url" class="urlBox" value="https://soundcloud.com/">
-      <img src="./static/img/btn-connect-l.png" class="connector">
-      <div class="example">ex. <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></div>
-    </div>
+  <div class="example row-fluid">
+    <figure class="span2">
+      <a href="examples-spokenword.html"><img alt="Stephanie Hooks" src="./static/img/sc-spokenword-911delay.jpg"></a>
+    </figure>
+    <article class="span9">
+      <h5>Spoken Word</h5>
+      <p>Stephanie Hooks pleaded for help after collapsing on the floor of her South Los Angeles home: <span data-end="177000" data-start="175796" data-id="61188346" class="soundcite soundcite-loaded soundcite-play">"I can't breathe... .</span> Help me breathe!" the 53-year-old grandmother wailed as frantic family members took turns on the phone with a Los Angeles Fire Department dispatcher...</p>
+    </article>
   </div>
-  <div class="step row">
-    <h2 class="span1">2</h2>
-    <div class="span11">
-      <h4>Choose what part of the clip to use</h4>
-      <p>Start playing the audio, click the XXXstart button to determine the starting point and the XXXend button to set the end point.</p>
-      <section id="creation_box">
-        <div id="player_container">
-          <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
-        </div>
-        <form id="times" class="form-inline">
-          <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="">
-          <button type="button" id="start_btn" class="btn">Set start</button>
-          <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="">
-          <button type="button" id="end_btn" class="btn">Set end</button>
-          <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
-          <span id="button_wrapper">
-            <button type="button" id="create_clip" class="btn btn-primary">Create clip</button>
-          </span>
-        </form>
-        <div id="audition_area">
-        </div>
-      </section>
-    </div>
+  <div class="example row-fluid">
+    <figure class="span2">
+      <a href="examples-naturalsound.html"><img alt="Protest" src="./static/img/sc-naturalsound-protest.jpg"></a>
+    </figure>
+    <article class="span9">
+      <h5>Natural Sound</h5>
+      <p>Tens of thousands of Egyptians packed into Tahrir Square in central Cairo on Friday ... <span data-end="81701" data-start="72436" data-id="34598716" class="soundcite soundcite-loaded soundcite-play">The crowd was as large</span> as any that has gathered in the square since the protests that forced out President Hosni Mubarak in February 2011. <!-- Even more unusual in the increasingly polarized political climate, Islamists, liberals and leftists all found common ground on at least one front: the demand that the generals, who took power with Mr. Mubarak's ouster, finally give it up. --></p>
+    </article>
   </div>
-  <div class="step row">
-    <h2 class="span1">3</h2>
-    <div class="span11">
-      <h4>Paste your text</h4>
-      <p>Paste the text you want to link to your clip in the third box of the Clip Creator.</p>
-      <img class="img-rounded img-polaroid" src="./static/img/screenshots/paste-text.png" width="785">
-    </div>
+  <div class="getStarted">
+    <h3>Ready to get started?</h3>
+    <p>&darr; Make a clip below &darr;</p>
   </div>
-  <div class="step row">
-    <h2 class="span1">4</h2>
-    <div class="span11">
-      <h4>Create your clip</h4>
-      <p>Click create clip to see a preview of your clip. Repeat steps 3-5 to create more clips from this sound. Use the delete button to remove clips that you do not want.</p>
-      <img class="img-rounded img-polaroid" src="./static/img/screenshots/create-clip.png" width="785">
-    </div>
-  </div>
-  <h2>Embedding Your Clip</h2>
-  <div class="step row">
-    <h2 class="span1">1</h2>
-    <div class="span11">
-      <h4>Embed the header code</h4>
-      <p>In the left column of the <a href="creator.html">Clip Creator</a>, copy the header embed code and paste it in the top of your post in your CMS. You only need to do this once per post.</p>
-      <img class="img-rounded img-polaroid" src="./static/img/screenshots/header-embed.png" width="388">
-    </div>
-  </div>
-  <div class="step row last">
-    <h2 class="span1">2</h2>
-    <div class="span11">
-      <h4>Embed each clip</h4>
-      <p>For each clip created, copy its embed code and paste it where the text belongs in your post.</p>
-      <img class="img-rounded img-polaroid" src="./static/img/screenshots/clip-embed.png" width="785">
-    </div>
-  </div>
-</div>
-<div id="help" class="accordion">
-  <h2>Questions &amp; Answers</h2>
+</section>
+<section class="container" id="walkthrough">
+
+  create page html here
+
+</section> <!-- end section -->
+<section class="container" id="help">
+  <h2>Help</h2>
+  <p>Have questions? Look below and see if your question is in the frequently asked questions.</p>
   <div class="accordion" id="accordion2">
     <div class="accordion-group">
       <div class="accordion-heading">
@@ -161,10 +106,17 @@
       </div>
     </div>
   </div>
-</div>
-<div id="about">
-    <h2>About SoundCite</h2>
-    <p>SoundCite is one of the Northwestern University's Knight Lab tool's for content creators. It was created by Medill student <a href="http://www.twitter.com/euphonos/">Tyler Fisher</a> and Medill Asst. Professor <a href="http://www.twitter.com/jeremygilbert/">Jeremy Gilbert</a>.</p>
-</div>
+</section>
+<section class="container" id="about">
+  <h2>About SoundCite</h2>
+  <div class="row-fluid">
+    <div class="span6">
+      <p>SoundCite is one of the Northwestern University's Knight Lab tool's for content creators. It was created by Medill student <a href="http://www.twitter.com/euphonos/">Tyler Fisher</a> and Medill Asst. Professor <a href="http://www.twitter.com/jeremygilbert/">Jeremy Gilbert</a>.</p>
+    </div>
+    <div class="span6">
+      <p>This project is hosted on <a target="_blank" href="https://github.com/NUKnightLab/soundcite">GitHub</a>, the largest code host in the world. We encourage you to contribute to the project and we value your feedback. Feel free to report bugs and discuss features on the <a target="_blank" href="https://github.com/NUKnightLab/soundcite.knightlab.com/issues">GitHub issues page</a>.</p>
+    </div>
+  </div>
+</section>
 
 {% endblock %}
