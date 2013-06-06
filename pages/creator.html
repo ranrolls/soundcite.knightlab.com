@@ -5,53 +5,61 @@
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <div id="left" class="span4">
-      <nav id="nav">
-        <h1>SoundCite</h1>
-        <h3>Instructions</h3>
-
-        <h5>Creation</h5>
-        <ol>
-          <li>Find a sound on SoundCloud and paste its URL into the URL box to the right.</li>
-          <li>Use the SoundCloud embed to set your start and end points for your clip.</li>
-          <li>Paste in the text associated with this clip.</li>
-          <li>Create each clip you need associated with this sound.</li>
-        </ol>
-        <h5>Embedding</h5>
-        <ol>
-          <li>When you are finished, take the following embed code and paste it at the top of your post.</li>
-          <textarea id="header" rows="4" readonly="readonly" class="code">&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;
-          </textarea>
-          <li>For each clip, paste its associated embed code where the text would normally go in the post</li>
-        </ol>
-      </nav>
-    </div>
-    <div id="right" class="span8">
-      <h5>Enter your SoundCloud URL</h5>
+    <h3>Instructions</h3>
+    <h5>Creation</h5>
+    <ol>
+      <li>Find a sound on SoundCloud and paste its URL into the URL box to the right.</li>
+      <li>Use the SoundCloud embed to set your start and end points for your clip.</li>
+      <li>Paste in the text associated with this clip.</li>
+      <li>Create each clip you need associated with this sound.</li>
+    </ol>
+    <h5>Embedding</h5>
+    <ol>
+      <li>When you are finished, take the following embed code and paste it at the top of your post.</li>
+      <textarea id="header" rows="4" readonly="readonly" class="code">&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;
+      </textarea>
+      <li>For each clip, paste its associated embed code where the text would normally go in the post</li>
+    </ol>
+  </div>
+  <div class="row-fluid step">
+    <h2 class="span1">1</h2>
+    <div class="span11">
+      <h4>Find a sound on SoundCloud and paste its URL below:</h4>
+      <p>After clicking the "Connect" button, you will see your clip appear in step #2.</p>
       <input type="search" id="url" class="urlBox" value="https://soundcloud.com/">
       <img src="./static/img/btn-connect-l.png" class="connector">
-      <div class="example">ex. <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></div>
-      <h3>Your sound</h3>
+      <em class="example block">Example: <a href="#" id="example">https://soundcloud.com/tame-impala/elephant</a></em>
+    </div>
+  </div> <!-- end row -->
+
+  <div class="row-fluid step">
+    <h2 class="span1">2</h2>
+    <div class="span11">
+      <h4>Use the SoundCloud widget below to set the START and END points for your clip.</h4>
+      <p>You can manually specify the start/end times in the text fields, or you can start playing the SoundCloud clip and click the START/END buttons to copy that time into the fields.</p>
       <section id="creation_box">
         <div id="player_container">
           <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
         </div>
         <form id="times" class="form-inline">
+          <div class="pull-left"><h5>New Clip:</h5></div>
           <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="">
-          <button type="button" id="start_btn" class="btn">Set start</button>
+          <button type="button" id="start_btn" class="btn">Set start time</button>
           <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="">
-          <button type="button" id="end_btn" class="btn">Set end</button>
-          <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
+          <button type="button" id="end_btn" class="btn">Set end time</button>
+          <label>Link text:</label> <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
           <span id="button_wrapper">
-            <button type="button" id="create_clip" class="btn btn-primary">Create clip</button>
+            <button type="button" id="create_clip" class="btn btn-primary">Create</button>
           </span>
         </form>
-        <div id="audition_area">
+        <div id="audition_area" class="well">
         </div>
       </section>
     </div>
-  </div>
-</div>
+  </div> <!-- end row -->
+
+
+</div> <!-- end container -->
 <script id="clip-base" type="text/template">
 <span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span>
 </script>

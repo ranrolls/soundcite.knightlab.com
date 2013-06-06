@@ -40,7 +40,9 @@ footer {
 		font-size: 32px;
 	}
 }
-
+em.example {
+  display: block;
+}
 /* To remove the double padding from the 'well' and the 'H4' */
 #examples {
 	padding-top: 0;
@@ -92,7 +94,9 @@ line-height: 1em;
   position: relative;
   top: -5px;
 }
-
+.connector:hover {
+  cursor: pointer;
+}
 #nav ol li {
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
@@ -104,6 +108,11 @@ line-height: 1em;
 
 #code {
   display: none;
+}
+
+#start_btn,
+#end_btn {
+  margin-right: 20px;
 }
 
 pre {
@@ -122,7 +131,12 @@ textarea {
 }
 
 #times {
-  text-align: center;
+  background-color: #e4f8fe;
+  padding: 10px;
+}
+#times .pull-left {
+  margin: -6px 0 0 17px;
+  width: 140px;
 }
 
 input::-webkit-input-placeholder {
@@ -155,7 +169,9 @@ input.error {
   width: 80%;
   font-size: 14px;
 }
-
+#audition_area  {
+   display: none;
+}
 #audition_area .soundcite {
     margin-right: 20px;
     margin-bottom: 10px;
