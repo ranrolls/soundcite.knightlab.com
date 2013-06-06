@@ -162,7 +162,6 @@ input.error {
 }
 
 #creation_box h3 {
-  text-align: center;
 }
 
 .urlBox {
@@ -173,7 +172,15 @@ input.error {
    display: none;
 }
 #audition_area .soundcite {
-    margin-right: 20px;
+    margin-right: 3px;
     margin-bottom: 10px;
 }
-
+.clip {
+    background-color: #FAFAFA;
+    border-left: 4px solid #F3F3F3;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    margin: 0 0 22px;
+    overflow: auto;
+    padding: 1em 1em 0;
+}

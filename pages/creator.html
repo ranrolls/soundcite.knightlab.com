@@ -5,21 +5,10 @@
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <h3>Instructions</h3>
-    <h5>Creation</h5>
-    <ol>
-      <li>Find a sound on SoundCloud and paste its URL into the URL box to the right.</li>
-      <li>Use the SoundCloud embed to set your start and end points for your clip.</li>
-      <li>Paste in the text associated with this clip.</li>
-      <li>Create each clip you need associated with this sound.</li>
-    </ol>
-    <h5>Embedding</h5>
-    <ol>
-      <li>When you are finished, take the following embed code and paste it at the top of your post.</li>
-      <textarea id="header" rows="4" readonly="readonly" class="code">&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;
-      </textarea>
-      <li>For each clip, paste its associated embed code where the text would normally go in the post</li>
-    </ol>
+    <div class="span12">
+      <h2>Create SoundCite clips</h2>
+      <p>On your site or blog in no time. As easy as 1-2-3</p>
+    </div>
   </div>
   <div class="row-fluid step">
     <h2 class="span1">1</h2>
@@ -47,27 +36,39 @@
           <button type="button" id="start_btn" class="btn">Set start time</button>
           <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="">
           <button type="button" id="end_btn" class="btn">Set end time</button>
-          <label>Link text:</label> <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="click here">
+          <label>Link text:</label> <input type="text" class="input-medium" id="linktext" placeholder="text to be hyperlinked" value="listen">
           <span id="button_wrapper">
             <button type="button" id="create_clip" class="btn btn-primary">Create</button>
           </span>
         </form>
-        <div id="audition_area" class="well">
+        <div id="audition_area">
+          <h3>Created clips</h3>
         </div>
       </section>
     </div>
   </div> <!-- end row -->
-
-
+  <div class="row-fluid step">
+    <h2 class="span1">3</h2>
+    <div class="span11">
+     <h4>Embedding</h4>
+      <ol>
+        <li>When you are finished creating clips, take the following embed code and paste it at the top of your page.</li>
+        <textarea id="header" rows="4" readonly="readonly" class="code">&lt;link href='//cdn.knightlab.com/libs/soundcite/latest/css/player.css' rel='stylesheet' type='text/css'&gt;&lt;script type='text/javascript' src='//connect.soundcloud.com/sdk.js'&gt;&lt;/script&gt;&lt;script type='text/javascript' src='//cdn.knightlab.com/libs/soundcite/latest/js/soundcite.min.js'&gt;&lt;/script&gt;
+        </textarea>
+        <li>Then, for each clip, paste its associated embed code where the text would normally go in the page.</li>
+      </ol>
+    </div>
+  </div>
 </div> <!-- end container -->
 <script id="clip-base" type="text/template">
 <span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span>
 </script>
 <script id="clip-preview" type="text/template">
 <div class="clip">
-<%= clip_html %> <button type='button' class='btn btn-danger delete-clip'>delete</button>
-<h6>Embed code</h6>
-<textarea readonly="readonly" class="code"><%= clip_html %></textarea>
+  <button type='button' class='btn btn-text pull-right icon-trash'></button>
+  <p>This is your clip <%= clip_html %> shown inline with text.</p> 
+  <h6>Embed code</h6>
+  <textarea readonly="readonly" class="code"><%= clip_html %></textarea>
 </div>
 </script>
 
