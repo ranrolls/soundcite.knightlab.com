@@ -187,3 +187,7 @@ input.error {
     overflow: auto;
     padding: 1em 1em 0;
 }
+
+.example.block a {
+  cursor: pointer;
+}
