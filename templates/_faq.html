@@ -14,6 +14,27 @@
         </div>
       </div>
     </div>
+
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#can-i-use-with-wordpress">
+          Can I use SoundCite with Wordpress?
+        </a>
+      </div>
+      <div id="can-i-use-with-wordpress" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <p>Yes, with some cautions. For some user roles, Wordpress "filters" HTML, stripping out the information that SoundCite needs to function. Specifically, for most Wordpress installs, only users with the <code>administrator</code> and <code>editor</code> roles will be able to enter SoundCite clips. Users with the <code>author</code> or <code>contributor</code> roles will have the SoundCite information stripped out of their posts. This will also happen if an <code>author</code> or <code>contributor</code> edits a post after an <code>administrator</code> or <code>editor</code>  has configured SoundCite. For more, see the <a href="http://codex.wordpress.org/Roles_and_Capabilities#unfiltered_html">Roles and Capabilities</a> page of the Wordpress Codex.</p>
+          <p>
+            You can install the <a href="http://wordpress.org/plugins/user-role-editor/">User Role Editor</a> plugin to grant the "unfiltered_html" capability to the "author" and "contributor" roles. There are risks involved in allowing less trusted users to author unfiltered HTML, so consider your own situation before choosing this solution.
+          </p>
+          <p>
+            Details may be slightly different for Wordpress multiuser sites.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#customize-appearance">
