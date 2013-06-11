@@ -132,13 +132,33 @@ textarea {
 
 #times {
   background-color: #e4f8fe;
-  padding: 10px;
-}
-#times .pull-left {
-  margin: -6px 0 0 17px;
-  width: 140px;
+  padding: 10px 10px 0px 10px;
+  font-size: .9em;
 }
 
+#times label{
+  font-size: 14px;
+}
+#linktext {
+  width: 40%;
+}
+#times .btn-link {
+  font-size: .9em;
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+}
+
+@media all and (min-width:767px) and (max-width:979px) {
+  #linklabel {
+    display: block;
+  }
+}
+@media all and (max-width:767px) {
+  #times .btn-link {
+    margin: 0;
+  }
+}
 input::-webkit-input-placeholder {
   font-size: 14px;
 }
