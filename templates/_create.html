@@ -25,25 +25,21 @@
         <div id="player_container">
           <iframe id="player" width="100%" height="166" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F1848538&show_artwork=true"></iframe>
         </div>
-        <div class="alert alert-error clear">
-          <button data-dismiss="alert" class="close" type="button">x</button>
-          <strong>Oops!</strong> Please correct the highligted fields below and try submitting again.
-        </div>
         <form id="times" class="form-inline clearfix">
-          <div class="control-group span3 offset1">
+          <div id="start-group" class="control-group span3 offset1">
             <label class="control-label" for="start_field">Start time</label>
-            <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="">
+            <input type="text" id="start_field" class="input-small start" placeholder="0:00" value="" tabindex="1">
             <button type="button" id="start_btn" class="btn btn-link">Set from player</button>
           </div>
-          <div class="control-group span3">
+          <div id="end-group" class="control-group span3">
             <label class="control-label" for="start_field">End time</label>
-                <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="">
+                <input type="text" id="end_field" class="input-small end" placeholder="0:05" value="" tabindex="2">
                 <button type="button" id="end_btn" class="btn btn-link">Set from player</button>
           </div>
-          <div class="control-group span5">
+          <div id="text-group" class="control-group span5">
             <label class="control-label" id="linklabel" for="linktext">Link text</label>
-              <input type="text" class="input-medium span4" id="linktext" placeholder="text to be hyperlinked" value="listen">
-            <button type="button" id="create_clip" class="btn btn-primary pull-right">Create clip</button>
+              <input type="text" class="input-medium span4" id="linktext" placeholder="text to be hyperlinked" value="listen"  tabindex="3">
+            <button type="button" id="create_clip" class="btn btn-primary pull-right" tabindex="4">Create clip</button>
           </div>
         </form>
         <h3>Created clips</h3>
@@ -68,10 +64,10 @@
 
 
 </section> <!-- end section -->
-<script id="clip-base" type="text/template">
+<script id="clip-base-template" type="text/template">
 <span class="soundcite" data-id="<%= id %>" data-start="<%= start %>" data-end="<%= end %>"><%= text %></span>
 </script>
-<script id="clip-preview" type="text/template">
+<script id="clip-preview-template" type="text/template">
 <div class="clip">
   <button type='button' class='btn btn-text pull-right icon-trash delete-clip'></button>
   <p>This is your clip <%= clip_html %> shown inline with text.</p>
@@ -80,3 +76,9 @@
 </div>
 </script>
 
+<script id="create-error-template" type="text/template">
+<div id="create-error" class="alert alert-error clear">
+  <button data-dismiss="alert" class="close" type="button">x</button>
+  <strong>Oops!</strong> Please correct the errors above and try submitting again.
+</div>
+</script>

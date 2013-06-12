@@ -1,4 +1,5 @@
 var clips = [];
+var clip_duration_in_millis = 0;
 
 function millisToTime(s) { 
 // http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
@@ -54,6 +55,7 @@ function load_sc_player() {
     SC.oEmbed(baseURL,
     function(data) {
         if (data) {
+            clip_duration_in_millis = 0;
             window.data = data;
             $('#player_container').empty();
             $("#times")[0].reset();
@@ -78,7 +80,7 @@ $("#url").keyup(function(event) {
 
 // Player functionality
 
-function setTime(field_id, position) { 
+function setTime(field_id, position, validate) { 
     position = String(position);
     
     if (position.match(/^\d+$/)) { // all digits is good
@@ -86,7 +88,9 @@ function setTime(field_id, position) {
     } else { // for now, trust everything
         $(field_id).val(position);
     }
-    validate_form();
+    if (validate) {
+        validate_form();
+    }
 }
 
 function getTimeAsMillis(field_id) {
@@ -99,7 +103,7 @@ function getTimeAsMillis(field_id) {
 $("#start_btn").click(function() {
     var widget = SC.Widget("player_iframe");
     widget.getPosition(function(position) {
-        setTime("#start_field", millisToTime(position))
+        setTime("#start_field", millisToTime(position),true)
     });
 });
 
@@ -107,12 +111,13 @@ $("#end_btn").click(function() {
     var widget = SC.Widget("player_iframe");
     var clicked = $(this);
     widget.getPosition(function(position) {
-        setTime("#end_field", millisToTime(position))
+        setTime("#end_field", millisToTime(position), true)
     });
 });
 
-var clip_base_template = _.template($("#clip-base").html().trim());
-var clip_preview_template = _.template($("#clip-preview").html().trim());
+var clip_base_template = _.template($("#clip-base-template").html().trim());
+var clip_preview_template = _.template($("#clip-preview-template").html().trim());
+var create_error_template = _.template($("#create-error-template").html().trim());
 
 $('#audition_area').on("click",".delete-clip", function() {
     var the_sound = $(this).prev('.soundcite');
@@ -124,7 +129,7 @@ $('#audition_area').on("click",".delete-clip", function() {
     $(this).parents(".clip").remove();
 });
 
-$('#button_wrapper').on("click", $('#create_clip'), function() {
+function create_clip() {
     if (validate_form()) {
         var widget = SC.Widget("player_iframe");
         widget.pause();
@@ -142,50 +147,97 @@ $('#button_wrapper').on("click", $('#create_clip'), function() {
                 clips.push(new soundcite.Clip(this));
             });
         });
+    } else {
+        console.log('not valid?');
     }
-})
+}
+
+$('#create_clip').click(create_clip);
 
 $("#example").click(function() {
   $("#url").val($(this).text());
   load_sc_player();
 });
 
-function validate_form() {
-    $("#create_clip").removeAttr("disabled");
-    var valid = true;
-    valid = validate_time_field($("#start_field")) && valid;
-    valid = validate_time_field($("#end_field")) && valid;
-    valid = validate_required($("#linktext")) && valid;
-    if (!valid) $("#create_clip").attr("disabled","disabled");
-    return valid;
+function show_errors(msgs) {
+    $("#create-error").remove();
+    var $error_box = $(create_error_template());
+    if (msgs) {
+        var $error_list = $("<ul>").appendTo($error_box);
+        for (var i = 0; i < msgs.length; i++) {
+            var msg = $("<li>").text(msgs[i]).appendTo($error_list);
+        }
+    }
+    $("form#times").after($error_box);
 }
-function validate_time_field($el) {
-    $el.removeClass("error");
-    var value = $el.val();
-    if (value && value.match(/^\d+$/)) {
-        $el.val(millisToTime(value));
-    } else if (isNaN(timeToMillis(value))) {
-        $el.addClass("error");
+
+function validate_form() {
+    var msgs = [];
+    $("#create_clip").removeAttr("disabled");
+    $("#create-error").remove();
+    validate_required($("#start_field"),"Start time", msgs);
+    validate_time_field($("#start_field"),"Start time", msgs);
+    validate_required($("#end_field"),"End time", msgs);
+    validate_time_field($("#end_field"),"End time", msgs);
+    validate_required($("#linktext"),"Link text", msgs);
+    var start = getTimeAsMillis("#start_field");
+    var end = getTimeAsMillis("#end_field");
+    if (start && end && (end < start)) {
+        msgs.push("End time must be after start time.")
+        $("#start_field").parent().addClass("error");
+        $("#end_field").parent().addClass("error");
+    }
+    if (msgs && msgs.length > 0) {
+        $("#create_clip").attr("disabled","disabled");
+        show_errors(msgs);
         return false;
     }
     return true;
 }
-function validate_required($el) {
-    $el.removeClass("error");
+function validate_time_field($el, label, msgs) {
+    var value = $el.val();
+    if (value) {
+        $el.parent().removeClass("error");
+        if (value.match(/^\d+$/)) {
+            $el.val(millisToTime(value));
+        } else if (isNaN(timeToMillis(value))) {
+            $el.parent().addClass("error");
+            if (msgs) {
+                msgs.push(label + " is not a valid time. Use mm:ss format.")
+            }
+            return false;
+        } else if (timeToMillis(value) < 0) {
+            console.log(value);
+            msgs.push(label + " must not be a negative number." + value);
+            return false;
+        } else if (clip_duration_in_millis > 0 && timeToMillis(value) > clip_duration_in_millis) {
+            msgs.push(label + " is beyond the end of the clip.")
+            return false;
+        }
+        
+    }
+    return true;
+}
+function validate_required($el, label, msgs) {
+    $el.parent().removeClass("error");
     
     if ($el.val().match(/.+/)) {
         return true;
     }
-    $el.addClass("error");
+    $el.parent().addClass("error");
+    msgs.push(label + " must not be blank.")
     return false
 }
 
 function set_end_from_widget() {
-    console.log('set_end_from_widget');
     var widget = SC.Widget("player_iframe");
-    widget.getDuration(function(duration) { setTime("#end_field",millisToTime(duration)); validate_time_field($("#end_field")); })
+    widget.getDuration(function(duration) { 
+        clip_duration_in_millis = duration;
+        setTime("#end_field",millisToTime(duration));           
+        validate_time_field($("#end_field"));
+    });
 }
-$("#start_field,#end_field,#linktext").blur(validate_form);
+$("#start_field,#end_field,#linktext").change(validate_form);
 
 $("#linktext").keyup(function() {
     validate_form();
