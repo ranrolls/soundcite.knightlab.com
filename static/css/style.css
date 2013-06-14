@@ -43,6 +43,11 @@ footer {
 em.example {
   display: block;
 }
+
+#screencast {
+  margin: 50px auto 0 auto;
+  display: block;
+}
 /* To remove the double padding from the 'well' and the 'H4' */
 #examples {
 	padding-top: 0;
